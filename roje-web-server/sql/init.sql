@@ -1,0 +1,1 @@
+INSERT INTO sys_user(id, gmt_create, gmt_modify, password, username) VALUE (NULL, NOW(), NOW(), '123456', 'root');

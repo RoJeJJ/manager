@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{bootstrap/css/bootstrap.min.css}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" th:href="@{fontawesome/css/all.min.css}">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" th:href="@{css/adminlte.min.css}">
+    <link rel="stylesheet" th:href="@{css/OverlayScrollbars.min.css}">
+</head>
+<script type="text/javascript" th:src="@{js/jquery-3.4.1.js}"></script>
+<script type="text/javascript" th:src="@{bootstrap/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{js/jquery.overlayScrollbars.min.js}"></script>
+<script type="text/javascript" th:src="@{js/adminlte.min.js}"></script>
+<body class="sidebar-mini layout-fixed">
+<div class="wrapper">
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <a href="#" class="brand-link">111111</a>
+        <div class="sidebar">
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                    data-accordion="false">
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa fa-cog"></i>
+                            <p>系统管理<i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" style="padding-left: 24px">
+                                    <i class="far fa-user nav-icon"></i>
+                                    <p>用户管理</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" style="padding-left: 24px">
+                                    <i class="fa fa-id-card nav-icon"></i>
+                                    <p>角色管理</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" style="padding-left: 24px">
+                                    <i class="far fa-file nav-icon"></i>
+                                    <p>权限管理</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>Widgets</p>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </aside>
+    <div class="content-wrapper">
+        <section class="content-header"></section>
+        <section class="content">
+            <iframe src="http://www.baidu.com"></iframe>
+        </section>
+    </div>
+</div>
+<aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+</aside>
+</body>
+<script>
+    let activeArr = [];
+    $('.nav-link').on('click', function (e) {
+        let obj = e.currentTarget;
+        let newActiveObj = jQuery(obj);
+        let parent = newActiveObj.parent();
+        let hasTreeView = parent.hasClass('has-treeview');
+        if (!hasTreeView) {
+            for (let i in activeArr) {
+                if (!activeArr.hasOwnProperty(i)) {
+                    continue;
+                }
+                activeArr[i].removeClass('active');
+            }
+            activeArr.length = 0;
+            let index = 0;
+            activeArr[index++] = newActiveObj;
+            newActiveObj.addClass('active');
+            let parentObj = newActiveObj.parent().parent().parent();
+            while (parentObj.hasClass('has-treeview')) {
+                console.log(parentObj);
+                let a = parentObj.children('a');
+                a.addClass('active');
+                activeArr[index++] = a;
+                parentObj = parentObj.parent().parent().parent();
+            }
+        }
+    })
+</script>
+<style>
+</style>
+</html>
